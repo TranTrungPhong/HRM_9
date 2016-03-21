@@ -23,6 +23,7 @@ import java.util.List;
 public class DepartmentActivity extends AppCompatActivity implements View.OnClickListener {
     public static final String KEY_NAME_DEPARTMENT = "name_department";
     public static final String KEY_BOX = "box";
+    public static final String KEY_EDIT_DEPART = "edit_department";
     private ListView mListviewDepartment;
     private DepartmentAdapter mAdapter;
     private DBManager mDBManager;
@@ -32,6 +33,7 @@ public class DepartmentActivity extends AppCompatActivity implements View.OnClic
     private EditText meditTextSeart;
     private DatabaseHelper mhelper = new DatabaseHelper(this);
     private DatabaseHelper.OpenHelper openHelper = new DatabaseHelper.OpenHelper(this);
+    private Department mDepartment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +64,17 @@ public class DepartmentActivity extends AppCompatActivity implements View.OnClic
                 bundleSend.putString(KEY_NAME_DEPARTMENT, mListDepart.get(position).getName());
                 intentSend.putExtra(KEY_BOX, bundleSend);
                 startActivity(intentSend);
+            }
+        });
+
+        mListviewDepartment.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                mDepartment = mListDepart.get(position);
+                Intent intent = new Intent(DepartmentActivity.this,EditDepartment.class);
+                intent.putExtra(KEY_EDIT_DEPART,mDepartment);
+                startActivity(intent);
+                return true;
             }
         });
     }

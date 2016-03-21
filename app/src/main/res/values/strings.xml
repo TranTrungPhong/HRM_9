@@ -17,6 +17,7 @@
     <string name="title_employee_item_status">Staff Status</string>
     <string name="title_department_name">Department Name</string>
     <string name="title_edit_employee_info">Edit Information Employee</string>
+    <string name="title_edit_depart_info">Edit Information Department</string>
     <string name="title_add_employee_info">Add Information Employee</string>
     <string name="title_add_department">Add Information Department</string>
     <string name="action_update_edit_employee">Update</string>

@@ -1,9 +1,13 @@
 package com.framgia.humanresourcemanagement.util;
 
+
+import java.io.Serializable;
+
 /**
  * Created by PhongTran on 3/20/2016.
  */
-public class Department {
+public class Department implements Serializable{
+
     private String name, description;
 
     public Department(String name, String description) {

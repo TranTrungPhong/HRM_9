@@ -15,11 +15,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< e5c122fee4e055b8f337f2a6b1292812ee83e651
         <activity android:name=".ui.EmployeeActivity" android:screenOrientation="portrait"></activity>
         <activity android:name=".ui.AddEmployeeActivity" android:screenOrientation="portrait"></activity>
         <activity android:name=".ui.InfoActivity" android:screenOrientation="portrait"></activity>
         <activity android:name=".ui.EditEmployee" android:screenOrientation="portrait"></activity>
         <activity android:name=".ui.AddDepartment" android:screenOrientation="portrait"/>
+=======
+        <activity android:name=".ui.EmployeeActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ui.AddEmployeeActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ui.InfoActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ui.EditEmployee" android:screenOrientation="portrait"/>
+        <activity android:name=".ui.AddDepartment" android:screenOrientation="portrait"/>
+        <activity android:name=".ui.EditDepartment" android:screenOrientation="portrait"/>
+>>>>>>> New Task
         
     </application>
 
