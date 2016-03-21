@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorTitleEmployeeListview">#64DD17</color>
+    <color name="colorButtonAddEmployee">#BF360C</color>
+    <color name="colorEmployeeItem">#FFFFFF</color>
+    <color name="colortitleobj">#ff8f73</color>
+</resources>
