@@ -1,0 +1,23 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="activity_layout_height_50">50dp</dimen>
+    <dimen name="activity_layout_height_200">200dp</dimen>
+    <dimen name="actitvity_size_margin">20dp</dimen>
+    <dimen name="activity_layout_height_title_project">150dp</dimen>
+    <dimen name="activity_margin_top">5dp</dimen>
+    <dimen name="activity_layout_height">80dp</dimen>
+    <dimen name="activity_margin_top_10">10dp</dimen>
+    <dimen name="activity_pading_row_layout">7dp</dimen>
+    <dimen name="activity_padding_left">20dp</dimen>
+    <dimen name="activity_margin_left">40dp</dimen>
+    <dimen name="divider_height_size">5dp</dimen>
+    <dimen name="size_layout_height_employee_information">100dp</dimen>
+    <dimen name="text_size_title">24sp</dimen>
+    <dimen name="text_size_title_30">30sp</dimen>
+    <dimen name="text_size">20sp</dimen>
+    <dimen name="text_size_employee_item">18sp</dimen>
+    <dimen name="text_size_employee_item_status">12sp</dimen>
+    <dimen name="text_size_button_update_edit_employee_info">15sp</dimen>
+</resources>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:gravity="center_horizontal"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_marginTop="@dimen/activity_margin_top"
+        android:layout_width="match_parent"
+        android:text="@string/title_employee_information"
+        android:gravity="center"
+        android:textSize="@dimen/text_size_title_30"
+        android:background="@android:color/holo_blue_light"
+        android:textColor="@android:color/holo_red_dark"
+        android:layout_height="@dimen/size_layout_height_employee_information" />
+
+    <TextView
+        android:id="@+id/text_name_employee"
+        android:layout_marginTop="@dimen/activity_margin_top_10"
+        android:layout_width="match_parent"
+        android:textSize="@dimen/text_size_title"
+        android:text="@string/title_employee_name"
+        android:layout_height="@dimen/activity_layout_height_50" />
+
+    <TextView
+        android:id="@+id/text_address_employee"
+        android:layout_marginTop="@dimen/activity_margin_top"
+        android:layout_width="match_parent"
+        android:textSize="@dimen/text_size_title"
+        android:text="@string/title_employee_address"
+        android:layout_height="@dimen/activity_layout_height_50" />
+
+    <TextView
+        android:id="@+id/text_birthday_employee"
+        android:layout_marginTop="@dimen/activity_margin_top"
+        android:layout_width="match_parent"
+        android:textSize="@dimen/text_size_title"
+        android:text="@string/title_employee_birthday"
+        android:layout_height="@dimen/activity_layout_height_50" />
+
+    <TextView
+        android:id="@+id/text_phone_employee"
+        android:layout_marginTop="@dimen/activity_margin_top"
+        android:layout_width="match_parent"
+        android:textSize="@dimen/text_size_title"
+        android:text="@string/title_employee_phone"
+        android:layout_height="@dimen/activity_layout_height_50" />
+
+    <TextView
+        android:id="@+id/text_status_employee"
+        android:layout_marginTop="@dimen/activity_margin_top"
+        android:layout_width="match_parent"
+        android:textSize="@dimen/text_size_title"
+        android:text="@string/title_employee_status"
+        android:layout_height="@dimen/activity_layout_height_50" />
+
+    <TextView
+        android:id="@+id/text_position_employee"
+        android:layout_marginTop="@dimen/activity_margin_top"
+        android:layout_width="match_parent"
+        android:textSize="@dimen/text_size_title"
+        android:text="@string/title_employee_position"
+        android:layout_height="@dimen/activity_layout_height_50" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:text="@string/action_edit_employee"
+        android:textSize="@dimen/text_size_title"
+        android:id="@+id/button_edit_info_staff"
+        android:textColor="@android:color/black"
+        android:layout_height="@dimen/activity_layout_height_50" />
+
+</LinearLayout>

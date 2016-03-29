@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/activity_margin_top_10"
+        android:text="@string/title_edit_employee_info"
+        android:textSize="@dimen/text_size_title_30"
+        android:textColor="@android:color/holo_red_light"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/activity_margin_top_10"
+        android:layout_width="match_parent"
+        android:weightSum="3"
+        android:orientation="horizontal"
+        android:layout_height="@dimen/activity_layout_height_50">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textSize="@dimen/text_size_title"
+            android:textColor="@android:color/black"
+            android:layout_height="wrap_content"
+            android:text="@string/title_employee_name" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:id="@+id/edit_name_edit_staff"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/activity_margin_top_10"
+        android:layout_width="match_parent"
+        android:weightSum="3"
+        android:orientation="horizontal"
+        android:layout_height="@dimen/activity_layout_height_50">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textSize="@dimen/text_size_title"
+            android:textColor="@android:color/black"
+            android:layout_height="wrap_content"
+            android:text="@string/title_employee_address" />
+
+        <EditText
+            android:id="@+id/edit_address_edit_staff"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/activity_margin_top_10"
+        android:layout_width="match_parent"
+        android:weightSum="3"
+        android:orientation="horizontal"
+        android:layout_height="@dimen/activity_layout_height_50">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textSize="@dimen/text_size_title"
+            android:textColor="@android:color/black"
+            android:layout_height="wrap_content"
+            android:text="@string/title_employee_birthday" />
+
+        <EditText
+            android:id="@+id/edit_birth_edit_staff"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/activity_margin_top_10"
+        android:layout_width="match_parent"
+        android:weightSum="3"
+        android:orientation="horizontal"
+        android:layout_height="@dimen/activity_layout_height_50">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textSize="@dimen/text_size_title"
+            android:textColor="@android:color/black"
+            android:layout_height="wrap_content"
+            android:text="@string/title_employee_phone" />
+
+        <EditText
+            android:id="@+id/edit_phone_edit_staff"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/activity_margin_top_10"
+        android:layout_width="match_parent"
+        android:weightSum="3"
+        android:orientation="horizontal"
+        android:layout_height="@dimen/activity_layout_height_50">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textSize="@dimen/text_size_title"
+            android:textColor="@android:color/black"
+            android:layout_height="wrap_content"
+            android:text="@string/title_employee_status" />
+
+        <EditText
+            android:id="@+id/edit_status_edit_staff"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/activity_margin_top_10"
+        android:layout_width="match_parent"
+        android:weightSum="3"
+        android:orientation="horizontal"
+        android:layout_height="@dimen/activity_layout_height_50">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textSize="@dimen/text_size_title"
+            android:textColor="@android:color/black"
+            android:layout_height="wrap_content"
+            android:text="@string/title_employee_position" />
+
+        <EditText
+            android:id="@+id/edit_position_edit_staff"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/activity_margin_top_10"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_height="@dimen/activity_layout_height_50">
+
+        <Button
+            android:id="@+id/button_update_edit_staff"
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/text_size_button_update_edit_employee_info"
+            android:textColor="@android:color/holo_red_light"
+            android:layout_height="wrap_content"
+            android:text="@string/action_update_edit_employee" />
+
+        <Button
+            android:layout_marginLeft="@dimen/activity_margin_left"
+            android:id="@+id/button_cancle_edit_staff"
+            android:layout_width="wrap_content"
+            android:textColor="@android:color/holo_red_light"
+            android:textSize="@dimen/text_size_button_update_edit_employee_info"
+            android:text="@string/action_cancle_edit_employee"
+            android:layout_height="match_parent" />
+
+        <requestFocus />
+    </LinearLayout>
+</LinearLayout>
