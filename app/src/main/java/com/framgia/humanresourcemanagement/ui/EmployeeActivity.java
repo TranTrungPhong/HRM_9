@@ -4,22 +4,24 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.framgia.humanresourcemanagement.R;
 import com.framgia.humanresourcemanagement.data.DBManager;
+import com.framgia.humanresourcemanagement.data.DatabaseHelper;
 import com.framgia.humanresourcemanagement.util.Employee;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -35,9 +37,9 @@ public class EmployeeActivity extends AppCompatActivity implements View.OnClickL
     private DBManager mDBManager;
     private String mDepartmentName;
     private ListView mListviewEmployee;
-    private EditText mEditSearch;
     private Button mButtonAddEmployee;
     private Button mButtonSearchEmployee;
+    private TextView mTextNameList;
 
     private EmployeeAdapter mAdapter;
     private ProgressBar mProgressBar;
@@ -48,6 +50,8 @@ public class EmployeeActivity extends AppCompatActivity implements View.OnClickL
     private Employee mEmployee2;
     private Intent mIntent;
     private List<Employee> mListEmployee;
+    private AutoCompleteTextView mAutoItem;
+    private String mNameChoose;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,29 +64,34 @@ public class EmployeeActivity extends AppCompatActivity implements View.OnClickL
 
     private void receiveNameDepartment() {
         Intent intentrecei = getIntent();
-        Bundle bundlerecei = intentrecei.getBundleExtra(DepartmentActivity.KEY_BOX);
-        mDepartmentName = bundlerecei.getString(DepartmentActivity.KEY_NAME_DEPARTMENT);
+        mDepartmentName = intentrecei.getStringExtra(DepartmentActivity.KEY_NAME_DEPARTMENT);
+        if (intentrecei == null) {
+            mDepartmentName = intentrecei.getStringExtra(DepartmentAdapter.KEY_NAME_DEPARTMENT);
+        }
     }
 
     private void initView() {
         mDBManager = new DBManager(getApplicationContext());
-        mDBManager.getEmployee(mDepartmentName);
-        mListEmployee = mDBManager.getListEmployee();
-
+        mTextNameList = (TextView) findViewById(R.id.text_name_list);
+        mTextNameList.setText(mDepartmentName + "");
         View footer = getLayoutInflater().inflate(R.layout.progress_bar_footer, null);
         mProgressBar = (ProgressBar) footer.findViewById(R.id.progressBar);
-        mEditSearch = (EditText) findViewById(R.id.edit_search_employee);
         mButtonAddEmployee = (Button) findViewById(R.id.button_add_employee);
         mButtonSearchEmployee = (Button) findViewById(R.id.button_search_employee);
+        initData();
+        mDBManager.getEmployee(mDepartmentName);
+        mListEmployee = mDBManager.getListEmployee();
         mAdapter = new EmployeeAdapter(this, mListEmployee, SIZE_FIRST_ITEM, SIZE_LOAD_MORE_ITEM);
-
-
+        mAdapter.notifyDataSetChanged();
         mProgressBar.setVisibility((SIZE_FIRST_ITEM < mListEmployee.size()) ? View.VISIBLE : View.GONE);
         mListviewEmployee = (ListView) findViewById(R.id.lv_employee);
         mListviewEmployee.setAdapter(mAdapter);
 
         mButtonAddEmployee.setOnClickListener(this);
         mButtonSearchEmployee.setOnClickListener(this);
+
+        searchView();
+
         mListviewEmployee.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -112,11 +121,87 @@ public class EmployeeActivity extends AppCompatActivity implements View.OnClickL
             @Override
             public void onScroll(AbsListView view, int firstItem, int itemCount, int totalItemCount) {
                 if (firstItem + itemCount == totalItemCount && !mAdapter.endReached() && !mCallback) {
-                    mHandler.postDelayed(showMore, 300);
-                    mCallback = true;
+                    if(mHandler != null){
+                        mHandler.postDelayed(showMore, 300);
+                    }
+                        mCallback = true;
                 }
             }
         });
+    }
+
+    private void searchView() {
+        mAutoItem = (AutoCompleteTextView) findViewById(R.id.autocompletetextview);
+        mAutoItem.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                mNameChoose = mAutoItem.getText().toString();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        mDBManager.getEmployee(mDepartmentName);
+        int indexSize = mDBManager.getListEmployee().size();
+        String[] products = new String[indexSize];
+        for (int i = 0; i < indexSize; i++) {
+            products[i] = mListEmployee.get(i).getName().toString();
+        }
+        mAutoItem.setAdapter(new ArrayAdapter<String>(this,
+                android.R.layout.simple_dropdown_item_1line, products));
+    }
+
+    private void initData() {
+        mDBManager.getEmployee(mDepartmentName);
+        mListEmployee = mDBManager.getListEmployee();
+        for (int i = 0; i < 50; i++) {
+            String name = "name" + i;
+            String status = "Intern";
+            if (i % 2 == 0) {
+                status = "New Dev";
+            }
+            if (i % 3 == 0) {
+                status = "Leader";
+            }
+            if (i % 5 == 0) {
+                status = "LeftJob";
+            }
+            if (i % 10 == 0) {
+                status = "Group Leader";
+            }
+            boolean flag = false;
+            for (int k = 0; k < mListEmployee.size(); k++) {
+                if (name.equalsIgnoreCase(mListEmployee.get(k).getName())) {
+                    flag = true;
+                }
+            }
+            if (flag) continue;
+            Employee employee = new Employee(i, name, "1", "1", "1", status, mDepartmentName);
+            mDBManager.insertValue(DatabaseHelper.TABLE_NAME_STAFF,
+                    new String[]{
+                            DatabaseHelper.COLUMN_EMPLOYEE_NAME,
+                            DatabaseHelper.COLUMN_EMPLOYEE_ADDRESS,
+                            DatabaseHelper.COLUMN_EMPLOYEE_BIRTHDAY,
+                            DatabaseHelper.COLUMN_EMPLOYEE_PHONE,
+                            DatabaseHelper.COLUMN_EMPLOYEE_STATUS,
+                            DatabaseHelper.COLUMN_EMPLOYE_POSITION},
+                    new String[]{
+                            employee.getName(),
+                            employee.getAddress(),
+                            employee.getBirthday(),
+                            employee.getPhone(),
+                            employee.getStatus(),
+                            employee.getPosition()
+                    }
+            );
+        }
     }
 
     private Runnable showMore = new Runnable() {
@@ -131,6 +216,7 @@ public class EmployeeActivity extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onResume() {
         super.onResume();
+        searchView();
         mDBManager.getEmployee(mDepartmentName);
         mListEmployee = mDBManager.getListEmployee();
         mAdapter.notifyDataSetChanged();
@@ -144,20 +230,13 @@ public class EmployeeActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(intent);
                 break;
             case R.id.button_search_employee:
-                boolean flag = true;
                 for (int i = 0; i < mListEmployee.size(); i++) {
                     String sName = mListEmployee.get(i).getName();
-                    if (sName.equalsIgnoreCase(mEditSearch.getText().toString())) {
+                    if (sName.equalsIgnoreCase(mNameChoose)) {
                         mIntent = new Intent(EmployeeActivity.this, InfoActivity.class);
                         mIntent.putExtra(KEY_BOX_EM, mListEmployee.get(i));
                         startActivity(mIntent);
-                        mEditSearch.setText("");
-                        flag = false;
                     }
-                }
-                if (flag) {
-                    Toast.makeText(getApplicationContext(), R.string.search_depart_null, Toast.LENGTH_SHORT)
-                            .show();
                 }
                 break;
         }

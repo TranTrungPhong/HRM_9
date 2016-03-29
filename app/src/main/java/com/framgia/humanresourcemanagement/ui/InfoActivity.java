@@ -30,7 +30,6 @@ public class InfoActivity extends Activity implements View.OnClickListener {
     private TextView mTextPosition;
     private Button mButtonEdit;
     private Employee mEmployee;
-    private String mString;
     private List<Employee> mListEmployee;
     private DBManager mDBManager;
 
@@ -56,7 +55,6 @@ public class InfoActivity extends Activity implements View.OnClickListener {
         mTextPhone.setText("Phone : " + mEmployee.getPhone());
         mTextStatus.setText("Status : " + mEmployee.getStatus());
         mTextPosition.setText("Position : " + mEmployee.getPosition());
-        mString = mTextName.getText().toString();
         mButtonEdit = (Button) findViewById(R.id.button_edit_info_staff);
         mButtonEdit.setOnClickListener(this);
     }
@@ -64,10 +62,11 @@ public class InfoActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onResume() {
         super.onResume();
+        mDBManager.getEmployee(mEmployee.getPosition().toString());
         mListEmployee = mDBManager.getListEmployee();
         for (int i = 0; i < mListEmployee.size(); i++) {
-            if (mListEmployee.get(i).getName().equals(mEmployee.getName())) {
-                mTextName.setText("Name : " + mEmployee.getName());
+            if (mListEmployee.get(i).getmID() == mEmployee.getmID()) {
+                mTextName.setText("Name : " + mListEmployee.get(i).getName());
                 mTextAddress.setText("Address : " + mListEmployee.get(i).getAddress());
                 mTextBirthday.setText("Birthday : " + mListEmployee.get(i).getBirthday());
                 mTextPhone.setText("Phone : " + mListEmployee.get(i).getPhone());

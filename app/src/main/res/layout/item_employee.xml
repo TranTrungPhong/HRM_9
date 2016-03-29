@@ -1,31 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:weightSum="2"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
 
     <TextView
-        android:layout_height="@dimen/activity_layout_height_50"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:text="@string/title_employee_item_name"
         android:id="@+id/text_staff_name"
-        android:paddingLeft="@dimen/text_size_employee_item"
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/text_size_employee_item"
-        android:background="@color/colorEmployeeItem"
-        android:gravity="center_vertical" />
-
-    <TextView
+        android:layout_width="match_parent"
         android:layout_height="@dimen/activity_layout_height_50"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:text="@string/title_employee_item_status"
-        android:id="@+id/text_staff_status"
-        android:paddingLeft="@dimen/text_size_employee_item"
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/text_size_employee_item"
         android:background="@color/colorEmployeeItem"
-        android:gravity="center|right" />
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/text_size_title_30"
+        android:text="@string/title_employee_item_name"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/text_size_employee_item" />
+
+
 </LinearLayout>

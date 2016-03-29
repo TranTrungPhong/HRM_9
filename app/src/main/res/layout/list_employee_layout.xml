@@ -1,55 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:background="@android:color/holo_blue_light"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/holo_blue_light"
+    android:orientation="vertical">
 
     <TextView
+        android:id="@+id/text_name_list"
         android:layout_width="match_parent"
-        android:text="@string/title_employee_listview"
-        android:textSize="@dimen/text_size_title_30"
-        android:gravity="center"
-        android:textColor="@android:color/holo_red_dark"
+        android:layout_height="@dimen/activity_layout_height"
         android:background="@color/colortitleobj"
-        android:layout_height="@dimen/activity_layout_height" />
+        android:gravity="center"
+        android:text="@string/title_employee_listview"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="@dimen/text_size_title_30" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:weightSum="7"
+        android:layout_height="@dimen/activity_layout_height_50"
         android:background="@android:color/holo_blue_bright"
         android:orientation="horizontal"
-        android:layout_height="@dimen/activity_layout_height_50">
+        android:weightSum="7">
 
         <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
             android:id="@+id/button_add_employee"
-            android:gravity="center"
-            android:background="@drawable/ic_add_icon"
-            android:layout_height="match_parent" />
-
-        <EditText
             android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/ic_add_icon"
+            android:gravity="center" />
+
+        <AutoCompleteTextView
+            android:id="@+id/autocompletetextview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="5"
-            android:hint="@string/hint_search_employee"
-            android:id="@+id/edit_search_employee"
-            android:background="@color/colorEmployeeItem"
-            android:layout_height="match_parent" />
+            android:background="@android:color/white"
+            android:completionThreshold="1" />
 
         <Button
-            android:layout_width="0dp"
-            android:background="@drawable/ic_search_icon"
-            android:layout_weight="1"
-            android:gravity="center"
             android:id="@+id/button_search_employee"
-            android:layout_height="match_parent" />
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/ic_search_icon"
+            android:gravity="center" />
     </LinearLayout>
 
     <ListView
-        android:layout_marginTop="@dimen/activity_margin_top_10"
-        android:layout_width="match_parent"
         android:id="@+id/lv_employee"
-        android:dividerHeight="@dimen/divider_height_size"
-        android:layout_height="wrap_content" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_margin_top_10"
+        android:dividerHeight="@dimen/divider_height_size" />
 </LinearLayout>

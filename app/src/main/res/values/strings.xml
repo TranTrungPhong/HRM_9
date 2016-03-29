@@ -18,9 +18,10 @@
     <string name="title_department_name">Department Name</string>
     <string name="title_edit_employee_info">Edit Information Employee</string>
     <string name="title_add_employee_info">Add Information Employee</string>
+    <string name="title_edit_depart_info">Edit Information Department</string>
     <string name="title_add_department">Add Information Department</string>
     <string name="action_update_edit_employee">Update</string>
-    <string name="action_cancle_edit_employee">Cancle</string>
+    <string name="action_cancle_edit_employee">Cancel</string>
     <string name="edit_done">Edit done !</string>
     <string name="edit_fail">Edit fail !</string>
     <string name="add_done">Add done !</string>
@@ -36,5 +37,8 @@
     <string name="cancel">Cancel</string>
     <string name="search_null">Khong co nhan vien can tim !</string>
     <string name="search_depart_null">Khong co phong ban can tim !</string>
+    <string name="view_list_department">View</string>
+    <string name="edit_depart_info">Edit</string>
+    <string name="choose_birthday">Choose Birthday</string>
 
 </resources>

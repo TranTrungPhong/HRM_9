@@ -1,170 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="@string/title_add_employee_info"
-        android:textSize="@dimen/text_size_title_30"
         android:textColor="@android:color/holo_red_light"
-        android:layout_height="wrap_content" />
+        android:textSize="@dimen/text_size_title_30" />
 
     <LinearLayout
-        android:layout_marginTop="@dimen/activity_margin_top_10"
         android:layout_width="match_parent"
-        android:weightSum="3"
+        android:layout_height="@dimen/activity_layout_height_50"
+        android:layout_marginTop="@dimen/activity_margin_top_10"
         android:orientation="horizontal"
-        android:layout_height="@dimen/activity_layout_height_50">
+        android:weightSum="3">
 
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:textSize="@dimen/text_size_title"
-            android:textColor="@android:color/black"
             android:layout_height="wrap_content"
-            android:text="@string/title_employee_name" />
+            android:layout_weight="1"
+            android:text="@string/title_employee_name"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_size_title" />
 
         <EditText
-            android:layout_width="0dp"
-            android:layout_weight="2"
             android:id="@+id/edit_name_add_staff"
-            android:layout_height="match_parent" />
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="@dimen/activity_margin_top_10"
         android:layout_width="match_parent"
-        android:weightSum="3"
+        android:layout_height="@dimen/activity_layout_height_50"
+        android:layout_marginTop="@dimen/activity_margin_top_10"
         android:orientation="horizontal"
-        android:layout_height="@dimen/activity_layout_height_50">
+        android:weightSum="3">
 
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:textSize="@dimen/text_size_title"
-            android:textColor="@android:color/black"
             android:layout_height="wrap_content"
-            android:text="@string/title_employee_address" />
+            android:layout_weight="1"
+            android:text="@string/title_employee_address"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_size_title" />
 
         <EditText
             android:id="@+id/edit_address_add_staff"
             android:layout_width="0dp"
-            android:layout_weight="2"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_weight="2" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="@dimen/activity_margin_top_10"
         android:layout_width="match_parent"
-        android:weightSum="3"
+        android:layout_height="@dimen/activity_layout_height_50"
+        android:layout_marginTop="@dimen/activity_margin_top_10"
         android:orientation="horizontal"
-        android:layout_height="@dimen/activity_layout_height_50">
+        android:weightSum="3">
 
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:textSize="@dimen/text_size_title"
-            android:textColor="@android:color/black"
             android:layout_height="wrap_content"
-            android:text="@string/title_employee_birthday" />
+            android:layout_weight="1"
+            android:text="@string/title_employee_birthday"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_size_title" />
 
-        <EditText
-            android:id="@+id/edit_birth_add_staff"
+        <TextView
+            android:id="@+id/text_birth_add_staff"
             android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="2"
-            android:layout_height="match_parent" />
+            android:background="@android:color/holo_blue_light"
+            android:gravity="center_vertical"
+            android:hint="@string/choose_birthday" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="@dimen/activity_margin_top_10"
         android:layout_width="match_parent"
-        android:weightSum="3"
+        android:layout_height="@dimen/activity_layout_height_50"
+        android:layout_marginTop="@dimen/activity_margin_top_10"
         android:orientation="horizontal"
-        android:layout_height="@dimen/activity_layout_height_50">
+        android:weightSum="3">
 
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:textSize="@dimen/text_size_title"
-            android:textColor="@android:color/black"
             android:layout_height="wrap_content"
-            android:text="@string/title_employee_phone" />
+            android:layout_weight="1"
+            android:text="@string/title_employee_phone"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_size_title" />
 
         <EditText
             android:id="@+id/edit_phone_add_staff"
             android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="2"
-            android:layout_height="match_parent" />
+            android:inputType="number" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="@dimen/activity_margin_top_10"
         android:layout_width="match_parent"
-        android:weightSum="3"
+        android:layout_height="@dimen/activity_layout_height_50"
+        android:layout_marginTop="@dimen/activity_margin_top_10"
         android:orientation="horizontal"
-        android:layout_height="@dimen/activity_layout_height_50">
+        android:weightSum="3">
 
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:textSize="@dimen/text_size_title"
-            android:textColor="@android:color/black"
             android:layout_height="wrap_content"
-            android:text="@string/title_employee_status" />
+            android:layout_weight="1"
+            android:text="@string/title_employee_status"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_size_title" />
 
-        <EditText
-            android:id="@+id/edit_status_add_staff"
+        <Spinner
+            android:id="@+id/spiner_status_add_staff"
             android:layout_width="0dp"
-            android:layout_weight="2"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_weight="2" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="@dimen/activity_margin_top_10"
         android:layout_width="match_parent"
-        android:weightSum="3"
+        android:layout_height="@dimen/activity_layout_height_50"
+        android:layout_marginTop="@dimen/activity_margin_top_10"
         android:orientation="horizontal"
-        android:layout_height="@dimen/activity_layout_height_50">
+        android:weightSum="3">
 
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:textSize="@dimen/text_size_title"
-            android:textColor="@android:color/black"
             android:layout_height="wrap_content"
-            android:text="@string/title_employee_position" />
+            android:layout_weight="1"
+            android:text="@string/title_employee_position"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_size_title" />
 
-        <EditText
-            android:id="@+id/edit_position_add_staff"
+        <Spinner
+            android:id="@+id/spiner_position_add_staff"
             android:layout_width="0dp"
-            android:layout_weight="2"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_weight="2" />
     </LinearLayout>
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/activity_layout_height_50"
         android:layout_marginTop="@dimen/activity_margin_top"
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
         android:gravity="center"
-        android:layout_height="@dimen/activity_layout_height_50">
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/button_add_staff"
             android:layout_width="wrap_content"
-            android:textSize="@dimen/text_size_button_update_edit_employee_info"
-            android:textColor="@android:color/holo_red_light"
             android:layout_height="wrap_content"
-            android:text="@string/add" />
+            android:text="@string/add"
+            android:textColor="@android:color/holo_red_light"
+            android:textSize="@dimen/text_size_button_update_edit_employee_info" />
 
         <Button
             android:id="@+id/button_cancle_add_staff"
             android:layout_width="wrap_content"
-            android:textColor="@android:color/holo_red_light"
-            android:textSize="@dimen/text_size_button_update_edit_employee_info"
+            android:layout_height="match_parent"
             android:text="@string/cancel"
-            android:layout_height="match_parent" />
+            android:textColor="@android:color/holo_red_light"
+            android:textSize="@dimen/text_size_button_update_edit_employee_info" />
     </LinearLayout>
 </LinearLayout>
