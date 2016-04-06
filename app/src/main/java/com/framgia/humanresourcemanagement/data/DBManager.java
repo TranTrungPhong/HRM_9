@@ -3,7 +3,6 @@ package com.framgia.humanresourcemanagement.data;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Environment;
 import android.widget.Toast;
@@ -29,7 +28,7 @@ public class DBManager extends DatabaseHelper {
     private static final String DB_NAME = "test";
     private Context mContext;
 
-    private SQLiteDatabase mDatabase;
+    private SQLiteDatabase mSQLiteDatabase;
     private OpenHelper mOpenHelper;
     private List<Department> mListDepartment = new ArrayList<>();
     private List<Employee> mListEmployee = new ArrayList<>();
@@ -71,33 +70,41 @@ public class DBManager extends DatabaseHelper {
     }
 
     private void openDB() {
-        mDatabase = mOpenHelper.getWritableDatabase();
+        mSQLiteDatabase = mOpenHelper.getWritableDatabase();
     }
 
+    private void closeDB(){
+        mOpenHelper.close();
+    }
     public void getDepartment() {
         mListDepartment.clear();
         openDB();
-        String[] cols = {DatabaseHelper.COLUMN_DEPARTMENT_NAME,
+        String[] cols = {
+                DatabaseHelper.COLUMN_DEPARTMENT_ID,
+                DatabaseHelper.COLUMN_DEPARTMENT_NAME,
                 DatabaseHelper.COLUMN_DEPARTMENT_DESCRIPTION};
-        Cursor cursor = mDatabase.query(DatabaseHelper.TABLE_NAME_DEPARTMENT, cols,
+        Cursor cursor = mSQLiteDatabase.query(DatabaseHelper.TABLE_NAME_DEPARTMENT, cols,
                 null, null, null, null, null);
         if (cursor == null) {
             return;
         }
         Department itemDepartment;
+        int indexId = cursor.getColumnIndex(DatabaseHelper.COLUMN_DEPARTMENT_ID);
         int indexName = cursor.getColumnIndex(DatabaseHelper.COLUMN_DEPARTMENT_NAME);
         int indexDescription = cursor.getColumnIndex(DatabaseHelper.COLUMN_DEPARTMENT_DESCRIPTION);
+        int id;
         String sName;
         String sDescription;
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
+            id = cursor.getInt(indexId);
             sName = cursor.getString(indexName);
             sDescription = cursor.getString(indexDescription);
-            itemDepartment = new Department(sName, sDescription);
+            itemDepartment = new Department(id, sName, sDescription);
             mListDepartment.add(itemDepartment);
             cursor.moveToNext();
         }
-
+        closeDB();
     }
 
     public boolean insertValue(String table_name, String[] cols, String... valus) {
@@ -107,7 +114,8 @@ public class DBManager extends DatabaseHelper {
         for (int i = 0; i < indexColSize; i++) {
             contentValues.put(cols[i], valus[i]);
         }
-        long newRow = mDatabase.insert(table_name, null, contentValues);
+        long newRow = mSQLiteDatabase.insert(table_name, null, contentValues);
+        closeDB();
         return newRow != -1;
     }
 
@@ -118,9 +126,17 @@ public class DBManager extends DatabaseHelper {
         for (int i = 0; i < indexColSize; i++) {
             contentValues.put(cols[i], values[i]);
         }
-        long countRow = mDatabase.update(table_name, contentValues, where, null);
-        return countRow != 0;
+        long countRow = mSQLiteDatabase.update(table_name, contentValues, where, null);
+        closeDB();
+        return countRow != -1;
     }
+
+//    public boolean deleteAllDB(String tabble_name) {
+//        openDB();
+//        long del = mSQLiteDatabase.delete(tabble_name, null, null);
+//        closeDB();
+//        return del != -1;
+//    }
 
     public List<Department> getListDepartment() {
         return mListDepartment;
@@ -134,6 +150,7 @@ public class DBManager extends DatabaseHelper {
         mListEmployee.clear();
         openDB();
         String[] cols = {
+                DatabaseHelper.COLUMN_EMPLOYEE_ID,
                 DatabaseHelper.COLUMN_EMPLOYEE_NAME,
                 DatabaseHelper.COLUMN_EMPLOYEE_ADDRESS,
                 DatabaseHelper.COLUMN_EMPLOYEE_BIRTHDAY,
@@ -143,25 +160,29 @@ public class DBManager extends DatabaseHelper {
         };
         String selec = DatabaseHelper.COLUMN_EMPLOYE_POSITION + " = ?";
         String[] Args = {sDepartment};
-        Cursor cursor2 = mDatabase.query(DatabaseHelper.TABLE_NAME_STAFF, cols, selec, Args, null, null, null, null);
+        Cursor cursor2 = mSQLiteDatabase.query(DatabaseHelper.TABLE_NAME_STAFF,
+                cols, selec, Args, null, null, null, null);
         if (cursor2 == null) {
             Toast.makeText(mContext.getApplicationContext(), R.string.cursor_em_null,
                     Toast.LENGTH_SHORT).show();
             return;
         }
         Employee itemEmployee;
+        int indexID;
         int indexStatus;
         int indexName;
         int indexBirthday;
         int indexPosition;
         int indexAddress;
         int indexPhone;
+        indexID = cursor2.getColumnIndex(DatabaseHelper.COLUMN_EMPLOYEE_ID);
         indexStatus = cursor2.getColumnIndex(DatabaseHelper.COLUMN_EMPLOYEE_STATUS);
         indexName = cursor2.getColumnIndex(DatabaseHelper.COLUMN_EMPLOYEE_NAME);
         indexBirthday = cursor2.getColumnIndex(DatabaseHelper.COLUMN_EMPLOYEE_BIRTHDAY);
         indexPosition = cursor2.getColumnIndex(DatabaseHelper.COLUMN_EMPLOYE_POSITION);
         indexAddress = cursor2.getColumnIndex(DatabaseHelper.COLUMN_EMPLOYEE_ADDRESS);
         indexPhone = cursor2.getColumnIndex(DatabaseHelper.COLUMN_EMPLOYEE_PHONE);
+        int ID;
         String sName;
         String sBirth;
         String sPosition;
@@ -170,16 +191,17 @@ public class DBManager extends DatabaseHelper {
         String sStatus;
         cursor2.moveToFirst();
         while (!cursor2.isAfterLast()) {
+            ID = cursor2.getInt(indexID);
             sStatus = cursor2.getString(indexStatus);
             sName = cursor2.getString(indexName);
             sBirth = cursor2.getString(indexBirthday);
             sPosition = cursor2.getString(indexPosition);
             sAddress = cursor2.getString(indexAddress);
             sPhone = cursor2.getString(indexPhone);
-            itemEmployee = new Employee(sName, sAddress, sBirth, sPhone, sStatus, sPosition);
+            itemEmployee = new Employee(ID, sName, sAddress, sBirth, sPhone, sStatus, sPosition);
             mListEmployee.add(itemEmployee);
             cursor2.moveToNext();
         }
-
+        closeDB();
     }
 }

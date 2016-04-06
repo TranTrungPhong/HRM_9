@@ -4,9 +4,12 @@ package com.framgia.humanresourcemanagement.ui;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
-import android.widget.AdapterView;
 
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -22,16 +25,14 @@ import java.util.List;
 
 public class DepartmentActivity extends AppCompatActivity implements View.OnClickListener {
     public static final String KEY_NAME_DEPARTMENT = "name_department";
-    public static final String KEY_BOX = "box";
-    private ListView mListviewDepartment;
-    private DepartmentAdapter mAdapter;
+    private ListView mListViewDepartment;
+    private DepartmentAdapter mDepartmentAdapter;
     private DBManager mDBManager;
-    private List<Department> mListDepart;
-    private Button mbuttonAdd;
-    private Button mbuttonSearch;
-    private EditText meditTextSeart;
-    private DatabaseHelper mhelper = new DatabaseHelper(this);
-    private DatabaseHelper.OpenHelper openHelper = new DatabaseHelper.OpenHelper(this);
+    private List<Department> mListDepartment;
+    private Button mButtonAdd;
+    private Button mButtonSearch;
+    private AutoCompleteTextView mAutoSearchDepart;
+    private String mNameDepartChoose;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,35 +44,47 @@ public class DepartmentActivity extends AppCompatActivity implements View.OnClic
     private void initView() {
         mDBManager = new DBManager(getApplicationContext());
         mDBManager.getDepartment();
-        mListDepart = mDBManager.getListDepartment();
-
-        mbuttonAdd = (Button) findViewById(R.id.button_add_depart);
-        mbuttonSearch = (Button) findViewById(R.id.button_search_depart);
-        meditTextSeart = (EditText) findViewById(R.id.edit_search_depart);
-        mListviewDepartment = (ListView) findViewById(R.id.listview_department);
-        mAdapter = new DepartmentAdapter(this, mListDepart);
-        mListviewDepartment.setAdapter(mAdapter);
-        mbuttonAdd.setOnClickListener(this);
-        mbuttonSearch.setOnClickListener(this);
-        mListviewDepartment.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mListDepartment = mDBManager.getListDepartment();
+        mButtonAdd = (Button) findViewById(R.id.button_add_depart);
+        mButtonSearch = (Button) findViewById(R.id.button_search_depart);
+        mAutoSearchDepart = (AutoCompleteTextView) findViewById(R.id.autocomplete_depart);
+        mListViewDepartment = (ListView) findViewById(R.id.listview_department);
+        mDepartmentAdapter = new DepartmentAdapter(this, mListDepartment);
+        mListViewDepartment.setAdapter(mDepartmentAdapter);
+        mButtonAdd.setOnClickListener(this);
+        mButtonSearch.setOnClickListener(this);
+        mAutoSearchDepart.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intentSend = new Intent();
-                intentSend.setClass(DepartmentActivity.this, EmployeeActivity.class);
-                Bundle bundleSend = new Bundle();
-                bundleSend.putString(KEY_NAME_DEPARTMENT, mListDepart.get(position).getName());
-                intentSend.putExtra(KEY_BOX, bundleSend);
-                startActivity(intentSend);
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                mNameDepartChoose = mAutoSearchDepart.getText().toString();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
+        mDBManager.getDepartment();
+        int indexSize = mDBManager.getListDepartment().size();
+        String[] products = new String[indexSize];
+        for (int i = 0; i < indexSize; i++) {
+            products[i] = mListDepartment.get(i).getName().toString();
+        }
+        mAutoSearchDepart.setAdapter(new ArrayAdapter<String>(this,
+                android.R.layout.simple_dropdown_item_1line, products));
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         mDBManager.getDepartment();
-        mListDepart = mDBManager.getListDepartment();
-        mAdapter.notifyDataSetInvalidated();
+        mListDepartment = mDBManager.getListDepartment();
+        mDepartmentAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -83,20 +96,18 @@ public class DepartmentActivity extends AppCompatActivity implements View.OnClic
                 break;
             case R.id.button_search_depart:
                 boolean flag = true;
-                for (int i = 0; i < mListDepart.size(); i++) {
-                    String sName = mListDepart.get(i).getName();
-                    if (sName.equalsIgnoreCase(meditTextSeart.getText().toString())) {
+                for (int i = 0; i < mListDepartment.size(); i++) {
+                    String sName = mListDepartment.get(i).getName();
+                    if (sName.equalsIgnoreCase(mNameDepartChoose)) {
                         Intent intentSend = new Intent(DepartmentActivity.this, EmployeeActivity.class);
-                        Bundle bundleSend = new Bundle();
-                        bundleSend.putString(KEY_NAME_DEPARTMENT, sName);
-                        intentSend.putExtra(KEY_BOX, bundleSend);
+                        intentSend.putExtra(KEY_NAME_DEPARTMENT, sName);
                         startActivity(intentSend);
                         flag = false;
                     }
                 }
                 if (flag) {
-                    Toast.makeText(getApplicationContext(), R.string.search_null, Toast.LENGTH_SHORT)
-                            .show();
+                    Toast.makeText(getApplicationContext(), R.string.search_depart_null,
+                            Toast.LENGTH_SHORT).show();
                 }
                 break;
         }

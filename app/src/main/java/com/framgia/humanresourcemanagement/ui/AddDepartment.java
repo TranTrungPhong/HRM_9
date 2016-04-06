@@ -19,7 +19,7 @@ public class AddDepartment extends Activity implements View.OnClickListener {
     private Button mButtonHuy;
     private EditText mEditName;
     private EditText mEditDes;
-    private DBManager dbManager;
+    private DBManager mDBManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +29,7 @@ public class AddDepartment extends Activity implements View.OnClickListener {
     }
 
     private void initView() {
-        dbManager = new DBManager(getApplicationContext());
+        mDBManager = new DBManager(getApplicationContext());
         mButtonAdd = (Button) findViewById(R.id.button_add_depart2);
         mButtonHuy = (Button) findViewById(R.id.button_cancle_add_depart);
         mEditName = (EditText) findViewById(R.id.name_add_depart);
@@ -42,7 +42,7 @@ public class AddDepartment extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button_add_depart2:
-                boolean addDepartment = dbManager.insertValue(DatabaseHelper.TABLE_NAME_DEPARTMENT,
+                boolean addDepartment = mDBManager.insertValue(DatabaseHelper.TABLE_NAME_DEPARTMENT,
                         new String[]{
                                 DatabaseHelper.COLUMN_DEPARTMENT_NAME,
                                 DatabaseHelper.COLUMN_DEPARTMENT_DESCRIPTION
