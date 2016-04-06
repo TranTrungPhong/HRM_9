@@ -7,4 +7,5 @@
     <color name="colorButtonAddEmployee">#BF360C</color>
     <color name="colorEmployeeItem">#FFFFFF</color>
     <color name="colortitleobj">#ff8f73</color>
+    <color name="backgroundSplashScreen">#6e2727</color>
 </resources>

@@ -9,6 +9,8 @@
     <dimen name="activity_margin_top">5dp</dimen>
     <dimen name="activity_layout_height">80dp</dimen>
     <dimen name="activity_margin_top_10">10dp</dimen>
+    <dimen name="activity_margin_top_30">30dp</dimen>
+    <dimen name="activity_margin_top_50">50dp</dimen>
     <dimen name="activity_pading_row_layout">7dp</dimen>
     <dimen name="activity_padding_left">20dp</dimen>
     <dimen name="activity_margin_left">40dp</dimen>
